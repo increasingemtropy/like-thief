@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8" />
 <title>LIKE THIEF</title>
-<link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' />
 <style>
 body {
   padding:0;
@@ -13,7 +12,6 @@ body {
 canvas {
   display:block;
   margin:30px auto 0;
-  border:1px dashed #ccc;
   background:#000;
 }
 </style>
@@ -35,7 +33,7 @@ var canvas,
     upKey = false,
     downKey = false,
     ship,
-    ship_x = (width / 2) - 25, ship_y = height - 75, ship_w = 100, ship_h = 100,
+    ship_x = (width / 2) - 25, ship_y = height - 75, ship_w = 50, ship_h = 50,
     laserTotal = 2,
     lasers = [],
     score = 0,
@@ -203,19 +201,24 @@ function getCursorPos(e) {
 
 //Draws the text for the score and lives on the canvas and if the player runs out of lives, it's draws the game over text and continue button as well as adding the event listener for the continue button
 function scoreTotal() {
-  ctx.font = 'bold 20px VT323';
+  ctx.fillStyle = '#000';
+  ctx.fillRect(5, 7, 140, 60);
+  ctx.font = 'bold 20px Courier New';
   ctx.fillStyle = '#fff';
-  ctx.fillText('Score: ', 10, 55);
-  ctx.fillText(score, 70, 55);
-  ctx.fillText('Lives:', 10, 30);
-  ctx.fillText(lives, 68, 30);
+  ctx.fillText('Score   ', 10, 55);
+  ctx.fillText(score, 80, 55);
+  ctx.fillText('Lives   ', 10, 30);
+  ctx.fillText(lives, 78, 30);
         if (!gameStarted) {
-    ctx.font = 'bold 50px VT323';
-    ctx.fillText('LIKE THIEF', width / 2  - 100, height / 2);
-    ctx.font = 'bold 20px VT323';
-    ctx.fillText('Click to Play', width / 2 - 50, height / 2 + 30);
-    ctx.fillText('Arrow keys to move', width / 2 - 60, height / 2 + 60);
-    ctx.fillText('x key to shoot', width / 2 - 50, height / 2 + 90);
+	ctx.fillStyle = '#000';
+	ctx.fillRect(width/2 -160, height/2-40, 350, 140);
+	ctx.fillStyle = '#fff';
+    ctx.font = 'bold 50px Courier New';
+    ctx.fillText('LIKE THIEF', width / 2  - 130, height / 2);
+    ctx.font = 'bold 20px Courier New';
+    ctx.fillText('Click to Play', width / 2 - 80, height / 2 + 30);
+    ctx.fillText('Arrow keys to move', width / 2 - 90, height / 2 + 60);
+    ctx.fillText('x key to shoot', width / 2 - 80, height / 2 + 90);
   }
   if (!alive) {
     ctx.fillText('Game Over!', 245, height / 2);
@@ -245,11 +248,11 @@ function init() {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
   enemy = new Image();
-  enemy.src = 'https://raw.githubusercontent.com/increasingemtropy/like-thief/main/heart.png';
+  enemy.src = './assets/heart.png';
   ship = new Image();
-  ship.src = 'https://raw.githubusercontent.com/increasingemtropy/like-thief/main/ship.png';
+  ship.src = './assets/ship.png';
   starfield = new Image();
-  starfield.src = 'https://raw.githubusercontent.com/increasingemtropy/like-thief/main/starfield.jpg';
+  starfield.src = './assets/starfield.jpg';
   document.addEventListener('keydown', keyDown, false);
   document.addEventListener('keyup', keyUp, false);
         canvas.addEventListener('click', gameStart, false);
